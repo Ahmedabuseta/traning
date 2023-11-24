@@ -31,6 +31,7 @@ import DraftCourses from './components/admin Panel/courses/draft';
 import AddCertificateDetails from './components/admin Panel/add certificate/Add_Certificate_Details';
 import { useSelector } from 'react-redux';
 import Jobs from './components/admin Panel/jobs/Jobs';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const users = useSelector(state=>state.users)
@@ -38,6 +39,7 @@ function App() {
     return (
     <>
     <div className="App">
+      <Toaster/>
       <Navbar />
       {/* <AdminSideBar/> */}
       {/* <AdminPanel/> */}

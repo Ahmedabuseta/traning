@@ -4,6 +4,7 @@ import "./Add_Certificate_Details.css";
 import Dragdrop from "../../Drag drop/Dragdrop";
 import { useDispatch } from "react-redux";
 import { addCertificate } from "../../redux/reducers/certificateSlice";
+import toast from "react-hot-toast";
 
 const AddCertificateDetails = () => {
 
@@ -32,16 +33,22 @@ const AddCertificateDetails = () => {
         return false
       }
     })
-    required?dispatch(addCertificate(formData)):window.alert('fill all fields')
+    required?handleSuccess():toast.error("fill all fields");
+
     
+    
+    // You can use 'formData' to send it to the server or perform other operations.
+  };
+  const handleSuccess =()=>{
+    dispatch(addCertificate(formData));
     setFormData({
       studentname: "",
       date_acquired: "",
       upload_date: "",
       course: "",
     });
-    // You can use 'formData' to send it to the server or perform other operations.
-  };
+    toast.success('successfully uploaded')
+  }
   return (
     <>
       <div className="left-box"></div>

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCourse } from '../../redux/reducers/CourseSlice';
 import Dragdrop from '../../Drag drop/Dragdrop';
+import toast from 'react-hot-toast';
 function AddCourses(){
     const [courseDetails, setCourseDetails] = useState({
         courseName: '',
@@ -41,28 +42,33 @@ function AddCourses(){
             return false
           }
         })
-        required?dispatch(addCourse(courseDetails)):window.alert('fill all fields')
-        setCourseDetails({
-          courseName: '',
-          level: '',
-          numOfLessons: '',
-          language: '',
-          startDate: '',
-          duration: '',
-          certificate: '',
-          courseIntroduction: '',
-          courseAssessment: '',
-          courseRequirements: '',
-          courseMaterials: '',
-          publishingDate: '',
-          instructor: '',
-          pubplish:false,
-          draft:false,
-          uploadedFile:null,
-        })
+        required?handleSuccess():toast.error("fill all fields");
+
         // Implement logic to save data to a database or perform other actions
         // For example: Send courseDetails to an API endpoint for storage
       };
+      const handleSuccess =()=>{
+        dispatch(addCourse(courseDetails));
+        setCourseDetails({
+        courseName: '',
+        level: '',
+        numOfLessons: '',
+        language: '',
+        startDate: '',
+        duration: '',
+        certificate: '',
+        courseIntroduction: '',
+        courseAssessment: '',
+        courseRequirements: '',
+        courseMaterials: '',
+        publishingDate: '',
+        instructor: '',
+        pubplish:false,
+        draft:false,
+        uploadedFile:null,
+      });
+        toast.success('successfully uploaded')
+      }
       const publishData = () => {
         console.log('Course Details:', courseDetails);
         setCourseDetails({ ...courseDetails, publish: true });

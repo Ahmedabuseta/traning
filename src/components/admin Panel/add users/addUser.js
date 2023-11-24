@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import './addUser.css'
 import { addUser } from '../../redux/reducers/userSlice.';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 function AddUser(){
     const [formData, setFormData] = useState({
         fName: '',
@@ -35,9 +36,12 @@ function AddUser(){
             return false
           }
         })
-        required?dispatch(addUser(formData)):window.alert('please fill all input fields');
-        
-        required && setFormData({
+        required?handleSuccess():toast.error("fill all fields");
+      
+      };
+      const handleSuccess =()=>{
+        dispatch(addUser(formData));
+        setFormData({
           fName: '',
           lName: '',
           status: 'Active',
@@ -49,7 +53,7 @@ function AddUser(){
           passwordConfirmation: '',
           score: 0,
         });
-      };
+        toast.success('successfully uploaded');}
       const publishData = () => {
         // Implement your logic to save the formData
         console.log('Form data:', formData);

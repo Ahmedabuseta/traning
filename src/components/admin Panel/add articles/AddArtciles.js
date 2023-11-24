@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addArticle } from "../../redux/reducers/ArticlesSlice.";
+import toast from "react-hot-toast";
 
 function AddArticles(){
 
@@ -34,19 +35,24 @@ function AddArticles(){
             return false
           }
         })
-        required?dispatch(addArticle(articleDetails)):window.alert("fill all fields")
+        required?handleSuccess():toast.error("fill all fields");
         
-        setArticleDetails({
-            articleTitle: '',
-            category: '',
-            content: '',
-            publishingDate: '',
-            uploadedFile: null ,
-            status:null,
-          });
+        
         // Implement logic to save data to a database or perform other actions
         // For example: Send articleDetails to an API endpoint for storage
       };
+      const handleSuccess =()=>{
+        dispatch(addArticle(articleDetails));
+        setArticleDetails({
+          articleTitle: '',
+          category: '',
+          content: '',
+          publishingDate: '',
+          uploadedFile: null ,
+          status:null,
+        });
+        toast.success('successfully uploaded')
+      }
       const publishData = () => {
         setArticleDetails({ ...articleDetails, statuse: true });
         dispatch(addArticle(articleDetails))

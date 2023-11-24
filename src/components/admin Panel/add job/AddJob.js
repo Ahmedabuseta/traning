@@ -3,6 +3,7 @@ import Dragdrop from '../../Drag drop/Dragdrop';
 import './AddJob.css';
 import { useDispatch } from 'react-redux';
 import { addJob } from '../../redux/reducers/JobSlice.';
+import toast from 'react-hot-toast';
 
 function AddJob() {
   const [formData, setFormData] = useState({
@@ -42,25 +43,30 @@ const handleSubmit = (e) => {
           return false
         }
       })
-      required?dispatch(addJob(formData)):window.alert('please fill all input fields');
+      required?handleSuccess():toast.error("fill all fields");
     // Reset form data after submission
-    setFormData({
-        companyName: '',
-        field: '',
-        location: '',
-        aboutCompany: '',
-        position: '',
-        jobType: '',
-        remote:null,
-        onsite:null,
-        link:'',
-        salary: '',
-        currency: '',
-        jobDescription: '',
-        jobRequirements: '',
-        skills: ''
-    });
+   
 };
+    const handleSuccess =()=>{
+        dispatch(addJob(formData));
+        setFormData({
+            companyName: '',
+            field: '',
+            location: '',
+            aboutCompany: '',
+            position: '',
+            jobType: '',
+            remote:null,
+            onsite:null,
+            link:'',
+            salary: '',
+            currency: '',
+            jobDescription: '',
+            jobRequirements: '',
+            skills: ''
+        })
+        toast.success('successfully uploaded')
+      }
     return (
         <div className="container home mt-5">
             <div className="details_job">
