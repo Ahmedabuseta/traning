@@ -37,6 +37,7 @@
   }
   .navbar{
     height: 70px;
+    font-family: sans-serif;
   }
   .date,
   .jobLooking{
@@ -44,10 +45,10 @@
   }
   .jobLooking h1,p{
     color: white;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: sans-serif;
   }
   .searchBox{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:sans-serif;
   }
   
   .searchBox .icon{
@@ -134,7 +135,6 @@
 .spn
 {
     font-size: 35px;
-    letter-spacing: 5px;
     color: red;
     letter-spacing: 0cap;
 }
@@ -548,7 +548,7 @@
     /* border: 1px solid #BF9B30 !important; */
 }
  /****************** media query page32*************************/
- @media(max-width:576px )
+ @media(max-width:778px )
 {
     body{
         font-size:small;

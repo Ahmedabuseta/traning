@@ -6,6 +6,7 @@ import './Jobsstyle.css'
 import Title from "../title/title";
 import Dragdrop from "../Drag drop/Dragdrop";
 import { useDispatch } from "react-redux";
+import Footer from "../footer/Footer";
 import { addApplication } from "../redux/reducers/ApplicationSlice";
 export default function FindJobs(){
     const jobs = [
@@ -187,7 +188,6 @@ return(
             
         <div class="container filter-side d-flex bd-highlight p-0">
           <div className={menu?"filter":"filter display-none"}>
-            {/* //className="position-absolute" */}
             <aside class="job-filter pb-5">
               <div class="filter-head d-flex  p-2 align-items-baseline rounded">
               <h2 class="text-white mr-5 fs-5">Filters</h2>
@@ -260,7 +260,7 @@ return(
             jobData.map((job,index)=>(
               <div class="div1 m-md-3"> 
                 <div class="dd-info row">
-                <div class="spn col-1 p-0 d-flex justify-content-center"><span style={{fontSize:"larger",fontWeight:"900"}}>≡</span>IT</div>
+                <div class="spn col-1 p-0 d-flex justify-content-center"><span style={{fontSize:"larger",fontWeight:"900",fontFamily:"Cambria,Cochin,Georgia,Times,Times New Roman,serif"}}>≡</span>IT</div>
                 <div className="col-md-8 col-sm-12 p-0">
                 <h2>{job.title}</h2>
                 <p>IT solution , {job.location}</p>
@@ -319,7 +319,7 @@ href='#'>
             { details&&!form&&
                 <div class="div1 m-md-3"> 
                 <div class="dd-info row">
-                <div class="spn col-1 p-0 d-flex justify-content-center"><span style={{fontSize:"larger",fontWeight:"900"}}>≡</span>IT</div>
+                <div class="spn col-1 p-0 d-flex justify-content-center"><span style={{fontSize:"larger",fontWeight:"900",fontFamily:"Cambria,Cochin,Georgia,Times,Times New Roman,serif"}}>≡</span>IT</div>
                 <div className="col-md-8 col-sm-12 p-0">
                 <h2>{currentJob.title}</h2>
                 <p>IT solution , {currentJob.location}</p>
@@ -349,7 +349,7 @@ href='#'>
                 { form&&
                 <div class="view-details3 div1 m-md-3">
                   <div class="dd-info row">
-                <div class="spn col-1 p-0 d-flex justify-content-center"><span style={{fontSize:"larger",fontWeight:"900"}}>≡</span>IT</div>
+                <div class="spn col-1 p-0 d-flex justify-content-center"><span style={{fontSize:"larger",fontWeight:"900",fontFamily:"Cambria,Cochin,Georgia,Times,Times New Roman,serif"}}>≡</span>IT</div>
                 <div className="col-md-8 col-sm-12 p-0">
                 <h2>{currentJob.title}</h2>
                 <p>IT solution , {currentJob.location}</p>
@@ -358,7 +358,7 @@ href='#'>
                 <p id="pi"> <FontAwesomeIcon icon={faLocationDot} style={{color: "#bf9b30"}} /> On Site</p>
                 </div>
               </div>
-              <h1>Balqees Hamdi Sabir</h1>
+              <h2>Balqees Hamdi Sabir</h2>
               <p>Computer science, international islamic university</p>
                 <form onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
                  <div class="form-group3 row">
@@ -378,7 +378,7 @@ href='#'>
                       <Dragdrop onFileDrop={handleFileDrop}/>
                     </div>
                     <div className="col-12 mt-5 d-flex justify-content-end">
-                      <button class="cancel">Cancel</button>
+                      <button class="cancel" onClick={()=>{setForm(false);setDetails(false)}}>Cancel</button>
                       <button class="submit" onClick={handleSubmit}>Submit</button>
                     </div>
                   </div>
@@ -390,6 +390,7 @@ href='#'>
           </div>
           </div>
     </div>
+    <Footer/>
     </>
 )
 }

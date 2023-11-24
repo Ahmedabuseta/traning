@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './profile.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare,faEnvelope, faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
+import Footer from '../footer/Footer'
+
 export default function Profile() {
     var [editMode,setEditMode]=useState(false)
     var [age,setAge]=useState("26yo")
@@ -57,11 +59,11 @@ export default function Profile() {
                 <span class="text-white"  >Computer science,international islamic university</span>
             </span>
                 <button class=" btn " style={{top:'25px !important'}} type="button">
-                <a href="#" class="text-white btn fs-5 bg-warning text-uppercase edit" onClick={handleClick}>{editMode?"Save Changes":"Edit Profile"}</a></button>
+                <a href="#" class="text-white btn  text-uppercase edit" onClick={handleClick}>{editMode?"Save Changes":"Edit Profile"}</a></button>
             
         </div>  
     </div>
-    <div className='profiledata mt-5 position-relative'>
+    <div className='profiledata mt-5 position-relative' style={{background:"none"}}>
     <div class="row gy-2 gx-5 gy-md-0 p-5">
             <div class="col-sm-12 col-md-3 profilefirst">
                 <form>
@@ -117,6 +119,7 @@ export default function Profile() {
         </div>        
     </div>
     </div>
+    <Footer/>
     </>
     )
 }

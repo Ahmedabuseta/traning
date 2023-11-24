@@ -85,7 +85,13 @@ font-size: 15px;
     background-color: #999999;
     margin-bottom: 50px;
 }
-@media(max-width:567px){
+.drag{
+    background: #999999 !important;
+}
+.hidden{
+    visibility: hidden;
+}
+@media(max-width:778px){
     .container{
         /* margin-top: 80px; */
         display: block;

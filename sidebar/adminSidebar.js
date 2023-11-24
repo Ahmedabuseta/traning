@@ -28,7 +28,7 @@ function AdminSideBar(){
             <li><Link className='dropdown-item' to="#">Editors</Link></li>
             <li><Link className='dropdown-item' to="#">Students</Link></li>
           </ul>
-        </div>
+</div>
           </div>
  
           

@@ -20,8 +20,7 @@ function AddCourses(){
         courseMaterials: '',
         publishingDate: '',
         instructor: '',
-        pubplish:false,
-        draft:false,
+        status:null,
         uploadedFile:null,
       });
     const dispatch = useDispatch()
@@ -35,7 +34,32 @@ function AddCourses(){
       const saveData = () => {
         console.log('Course Details:', courseDetails);
         setCourseDetails({ ...courseDetails, draft: true });
-        dispatch(addCourse(courseDetails))
+        const required = Object.keys(courseDetails).every(key => {
+          if (courseDetails[key] !== undefined && courseDetails[key] !== '') {
+            return true;
+          }else{
+            return false
+          }
+        })
+        required?dispatch(addCourse(courseDetails)):window.alert('fill all fields')
+        setCourseDetails({
+          courseName: '',
+          level: '',
+          numOfLessons: '',
+          language: '',
+          startDate: '',
+          duration: '',
+          certificate: '',
+          courseIntroduction: '',
+          courseAssessment: '',
+          courseRequirements: '',
+          courseMaterials: '',
+          publishingDate: '',
+          instructor: '',
+          pubplish:false,
+          draft:false,
+          uploadedFile:null,
+        })
         // Implement logic to save data to a database or perform other actions
         // For example: Send courseDetails to an API endpoint for storage
       };
@@ -88,7 +112,7 @@ function AddCourses(){
         <div class="form-section col-md-3 col-lg-3 col-12">
           <label for="startDate">Start Date</label>
           <div class="input-group input-group-icon">
-            <span class="input-group-text  bg-secondary bg-opacity-25  "><FontAwesomeIcon icon={faCalendar} className='text-warning ' /></span>
+            <span class="input-group-text  bg-secondary bg-opacity-25  "><FontAwesomeIcon icon={faCalendar} className='color-yellow ' /></span>
             <input type="text" id="startDate" class="form-control bg-secondary bg-opacity-25 "value={courseDetails.startDate}
             onChange={handleInputChange}/>
         </div>
@@ -97,7 +121,7 @@ function AddCourses(){
         <div class="form-section col-md-3 col-lg-3 col-12">
           <label for="duration">Duration</label>
           <div class="input-group input-group-icon">
-            <span class="input-group-text  bg-secondary bg-opacity-25  "><FontAwesomeIcon icon={faClock} className='text-warning' /></span>
+            <span class="input-group-text  bg-secondary bg-opacity-25  "><FontAwesomeIcon icon={faClock} className='color-yellow' /></span>
             <input type="text" id="duration" class="form-control bg-secondary bg-opacity-25  " value={courseDetails.duration}
             onChange={handleInputChange}/>
         </div>
@@ -136,7 +160,7 @@ function AddCourses(){
         <div class="form-section col-md-3 col-lg-3 col-12">
           <label for="publishingDate">Publishing Date</label>
           <div class="input-group input-group-icon">
-            <span class="input-group-text  bg-secondary bg-opacity-25  "><FontAwesomeIcon icon={faCalendar} className='text-warning ' /></span>
+            <span class="input-group-text  bg-secondary bg-opacity-25  "><FontAwesomeIcon icon={faCalendar} className='color-yellow ' /></span>
             <input type="text" id="publishingDate" class="form-control  bg-secondary bg-opacity-25" value={courseDetails.publishingDate}
             onChange={handleInputChange}/>
         </div>
@@ -154,7 +178,7 @@ function AddCourses(){
         </div>
         
         <div class="buttons row justify-content-end mx-auto mt-3">
-          <button class="btn cancel-btn col-md-2 col-lg-2 col-12 text-white order-last order-md-first order-lg-first">CANCEL</button>
+          <button class="btn cancel-btn col-md-2 col-lg-2 col-12 text-white order-last order-md-first order-lg-first mx-2">CANCEL</button>
           <button class="btn save-btn col-md-2 col-lg-2 col-12 text-white ml-md-3 mb-3 mb-md-0 mb-lg-0 " onClick={saveData}>SAVE</button>
       </div>
 

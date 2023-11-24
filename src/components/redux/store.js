@@ -5,6 +5,7 @@ import CourseSlice from "./reducers/CourseSlice";
 import userSlice from "./reducers/userSlice.";
 import cvDataSlice from "./reducers/cvDataSlice";
 import ApplicationSlice from "./reducers/ApplicationSlice";
+import { CertificateSlice } from "./reducers/certificateSlice";
 
 const Store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const Store = configureStore({
     courses:CourseSlice,
     cvData:cvDataSlice,
     applications : ApplicationSlice,
+    certificates:CertificateSlice,
     },
 });
 

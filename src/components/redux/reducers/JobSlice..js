@@ -13,7 +13,7 @@ export const JobSlice= createSlice({
     name:"JobSlice",
     initialState:[
         {
-            company:'this is company',
+            companyName:'this is companyName',
             position:'tech',
             status:true,
             date:'monday June 5th',
@@ -22,7 +22,7 @@ export const JobSlice= createSlice({
             application:12,
         },
         {
-            company:'this is company',
+            companyName:'this is companyName',
             position:'tech',
             status:true,
             date:'monday June 5th',
@@ -31,7 +31,7 @@ export const JobSlice= createSlice({
             application:12,
         },
         {
-            company:'this is company',
+            companyName:'this is companyName',
             position:'Education',
             status:false,
             date:'sunday June 5th',

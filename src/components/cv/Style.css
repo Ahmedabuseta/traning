@@ -36,10 +36,10 @@
     padding: 1.5rem;
     width: 100%!important;
 }
-input{
-background-color: #ffffff1e!important;
+input,textarea{
+background-color: #ffffff1e !important;
 border: 0!important;   
- color: #fffffff1!important;
+ color: #fffffff1 !important;
 }
 
 .upload-personal-photo{
@@ -117,12 +117,18 @@ i{
 }
 .remove-icon-move{
     position: absolute;
-    margin-top: 15px   ;
+    margin-top: 30px   ;
     cursor: pointer;
    
 }
+.remove-icn-move{
+    position: absolute;
+    margin-top: -35px;
+    cursor: pointer;
+}
 .add-icon-move{
-    margin: 15px;
+    margin-top: -35px;
+    margin-left: 10px;
     position: absolute;
 }
 .remove-icon{
@@ -139,10 +145,72 @@ i{
    .cv-form-rounded{
     border:2px dashed #bf9b30!important;
     padding: 1rem!important;
+    margin-bottom: 50px;
    }
    @media (min-width: 992px){
     .cv-form-rounded{
         border-width: 0px;
         padding: 0;
+    }
+    
+}
+@media(max-width:778px){
+    .centered{
+        margin: auto;
+    }
+    .user-part{
+        padding: 20px;
+        background-color: rgba(0, 0, 0,0.4);
+        border-radius: 5px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .user-part h4{
+        font-size: larger;
+        font-weight: 700;
+    }
+    .user-part p{
+        font-size: medium;
+        font-weight: 100;
+    }
+    .user-part .Active{
+        border: none;
+        background-color: #bf9b30;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+        position: absolute;
+        top: 20px;
+        right: 10px;
+    }
+}
+@media(max-width:500px){
+    .centered{
+        margin: auto;
+    }
+    .user-part{
+        padding: 20px;
+        background-color: rgba(0, 0, 0,0.4);
+        border-radius: 5px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .user-part h4{
+        font-size: larger;
+        font-weight: 700;
+    }
+    .user-part p{
+        font-size: medium;
+        font-weight: 100;
+    }
+    .user-part .Active{
+        border: none;
+        background-color: #bf9b30;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+        position: absolute;
+        top: 20px;
+        right: 10px;
     }
 }

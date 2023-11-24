@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 import { removeCourse } from "../../redux/reducers/CourseSlice";
 import { useCallback, useEffect, useState } from "react";
 
-function Courses(){
+function DraftCourses(){
   const courses = useSelector(state=>state.courses)
+  const DraftCourses = courses.filter(course=>course.status === false)
   const dispatch = useDispatch()
   var [search,setSearch]=useState("");
-  let diplayedArr = courses;
+  let diplayedArr = DraftCourses;
   if(search){
-    diplayedArr=courses.filter((el)=>el?.courseName.toLowerCase()?.includes(search.toLowerCase()))
+    diplayedArr=DraftCourses.filter((el)=>el?.courseName.toLowerCase()?.includes(search.toLowerCase()))
   }else{
-    diplayedArr = courses;
+    diplayedArr = DraftCourses;
   }
   // useEffect(()=>{
   //     dispatch(fetchCourses())
@@ -92,14 +93,14 @@ function Courses(){
           </Link>
         </div>)
         :<div class="article-sec  ">
-        <Link to="/adminPanel/addCourses">
-          <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" style={{border:"1px solid #bf9b30"}}> Create new course</button>
-          </Link>
-              <div class="article-search d-lg-flex justify-content-lg-between">
-                <h4 className="text-light">Courses</h4>
-                <div class="search-div">
-                  <input type="text" placeholder="Search For Jobs" onChange={(e)=>{setSearch(e.target.value)}} style={{borderRadius:"5px",padding:"5px"}}/>
-                  <FontAwesomeIcon icon={faSearch} className="text-warning"/>
+        <Link to="/adminPanel/addCourses" >
+        <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" style={{border:"1px solid #bf9b30"}}> Create new course</button>
+        </Link>
+            <div class="article-search d-lg-flex justify-content-lg-between">
+              <h4 className="text-light">Courses</h4>
+              <div class="search-div">
+                <input type="text" placeholder="Search For Jobs" onChange={(e)=>{setSearch(e.target.value)}} style={{padding:"5px",borderRadius:"5px"}}/>
+                <FontAwesomeIcon icon={faSearch} className="text-warning"/>
               </div>
             </div>
             <div class="article-content">
@@ -145,4 +146,4 @@ function Courses(){
         </>
     )
 }
-export default Courses;
+export default DraftCourses;

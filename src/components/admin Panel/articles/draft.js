@@ -6,16 +6,17 @@ import { removeArticle } from "../../redux/reducers/ArticlesSlice.";
 import Pagination from "../../pagination/pagination";
 import moment from "moment";
 import { useCallback, useEffect, useState } from "react";
-function Articles(){
-  const [search,setSearch]=useState("");
+function DraftArticles(){
+  var [search,setSearch]=useState("");
   const articles = useSelector(state=>state.articles)
-  let diplayedArr = articles;
-  if(search){
-    diplayedArr=articles.filter((el)=>el?.articleTitle.toLowerCase()?.includes(search.toLowerCase()))
-  }else{
-    diplayedArr = articles;
-  }
+  const draftArticles = articles.filter(article=>article.status === false);
   console.log(articles)
+  let diplayedArr = draftArticles;
+  if(search){
+    diplayedArr=draftArticles.filter((el)=>el?.articleTitle.toLowerCase()?.includes(search.toLowerCase()))
+  }else{
+    diplayedArr = draftArticles;
+  }
   const dispatch = useDispatch()
 
   // useEffect(()=>{
@@ -54,14 +55,14 @@ function Articles(){
         <div class="article-sec  ">
           {
             isMobile?"":<Link to="/adminPanel/addarticles" >
-            <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" style={{border:"1px solid #bf9b30"}}> Create new article</button>
+            <button className="btn  ps-4 m-2 d-block pe-4 p-2 ms-auto color-yellow" style={{transform:'translateY(-50px)',border:"1px solid #bf9b30"}}> Create new article</button>
             </Link>
           }
               {
                 isMobile?'':<div class="article-search d-lg-flex justify-content-lg-between">
                 <h4 className="text-light">Articles</h4>
                 <div class="search-div">
-                  <input type="text" placeholder="Search For Jobs"onChange={(e)=>{setSearch(e.target.value)}} style={{padding:"5px",borderRadius:"5px"}}/>
+                  <input type="text" placeholder="Search For Jobs" onChange={(e)=>{setSearch(e.target.value)}} style={{padding:"5px",borderRadius:"5px"}}/>
                   <FontAwesomeIcon icon={faSearch} className="text-warning"/>
                 </div>
               </div>
@@ -140,4 +141,4 @@ function Articles(){
         </>
     )
 }
-export default Articles;
+export default DraftArticles;

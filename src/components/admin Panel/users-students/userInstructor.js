@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import { removeUser } from "../../redux/reducers/userSlice.";
 import { useCallback, useEffect, useState } from "react";
 import moment from "moment";
-function Users(){
+function UserInstructors(){
   const [search,setSearch]=useState("");
   const users = useSelector(state=>state.users)
-  let diplayedArr = users;
+  const userStudents = users?.filter(user=> user.role === 'instructor')
+  let diplayedArr = userStudents;
   if(search){
-    diplayedArr=users.filter((el)=>el?.lName.toLowerCase()?.includes(search.toLowerCase())||el?.fName.toLowerCase()?.includes(search.toLowerCase()))
+    diplayedArr=userStudents.filter((el)=>el?.lName.toLowerCase()?.includes(search.toLowerCase())||el?.fName.toLowerCase()?.includes(search.toLowerCase()))
   }else{
-    diplayedArr = users;
+    diplayedArr = userStudents;
   }
   const dispatch = useDispatch()
   // useEffect(()=>{
@@ -22,7 +23,7 @@ function Users(){
   const [isMobile , setIsMobile] = useState(false)
   const [availableWidth ,setAvailableWidth ] = useState(window.innerWidth)
   const handleMobileView = useCallback(() => {
-    console.log(availableWidth,isMobile);
+    console.log(availableWidth,isMobile,userStudents);
     if (availableWidth <= 778) {
       setIsMobile(true);
     } else {
@@ -79,7 +80,7 @@ function Users(){
             
           : <div class="user-sec  ">
           <Link to="/adminPanel/addUsers">
-          <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" style={{ border:"1px solid #bf9b30"}}> Create new user</button>
+          <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" style={{border:"1px solid #bf9b30"}}> Create new user</button>
           </Link>
               <div class="article-search d-lg-flex justify-content-lg-between">
                 <h4 className="text-light">users</h4>
@@ -129,4 +130,4 @@ function Users(){
         </>
     )
 }
-export default Users;
+export default UserInstructors;

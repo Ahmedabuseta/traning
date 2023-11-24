@@ -21,7 +21,7 @@
     flex-direction: column;
   }
   .navbar{
-    z-index: 555555;
+    z-index: 5;
   }
   .navbar .container img{
     width: 100;
@@ -34,10 +34,42 @@
   .nav-item .nav-link{
     color: white;
   }
-  .nav-item .nav-link:hover{
-    border-bottom:1px solid var(--hover);
-    color: #fff;
+  .nav-link{
+    position: relative;
   }
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 0%;
+    height: 60%;
+    border-bottom: 2px solid #BF9B30;
+    z-index: -1;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+  height: 56%;
+  transition: 0.5s;
+  transition-delay: 0.2s;
+  opacity: 1;
+}
+.nav-contact{
+  padding: 10px;
+
+}
+.nav-con{
+  border:1px solid #bf9b30;
+  transition: 0.5s;
+}
+.nav-con:hover{
+  background-color: #BF9B30;
+  color: white;
+  transition: 0.5s;
+}
   .nav-item .dropdown-toggle:focus,
   .nav-item .nav-link:focus
   {

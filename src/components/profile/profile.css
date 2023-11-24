@@ -1,19 +1,12 @@
 
 :root {
     --section-color:#eff7fa;
-    --dark-color: rgba(0, 0, 0, .4);;
+    --dark-color: rgba(0, 0, 0, .4);
 }
 
 
 
-.profileoverlay{
-    background-color: rgba(29,29,29,.9);
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
+
 .pen{
     position: absolute;
     display: inline-block;
@@ -33,7 +26,12 @@
 }
 .edit{
     background-color: #bf9b30;
+    font-size: medium;
     color: #FFE;
+}
+.edit:hover{
+    border: 1px solid #bf9b30;
+    background-color: none;
 }
 .profiledata .profilefirst{
     background-color: var(--dark-color);
@@ -116,7 +114,7 @@
     right: 15px;
     width: fit-content;
 }
-@media(max-width:500px){
+@media(max-width:778px){
     .profiledata h3{
         font-size: 16px;
         top: 95%;

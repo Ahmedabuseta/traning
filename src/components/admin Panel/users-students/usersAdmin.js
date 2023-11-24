@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import { removeUser } from "../../redux/reducers/userSlice.";
 import { useCallback, useEffect, useState } from "react";
 import moment from "moment";
-function Users(){
+function UserAdmins(){
   const [search,setSearch]=useState("");
   const users = useSelector(state=>state.users)
-  let diplayedArr = users;
+  const userStudents = users?.filter(user=> user.role === 'Admin')
+  let diplayedArr = userStudents;
   if(search){
-    diplayedArr=users.filter((el)=>el?.lName.toLowerCase()?.includes(search.toLowerCase())||el?.fName.toLowerCase()?.includes(search.toLowerCase()))
+    diplayedArr=userStudents.filter((el)=>el?.lName.toLowerCase()?.includes(search.toLowerCase())||el?.fName.toLowerCase()?.includes(search.toLowerCase()))
   }else{
-    diplayedArr = users;
+    diplayedArr = userStudents;
   }
   const dispatch = useDispatch()
   // useEffect(()=>{
@@ -22,7 +23,7 @@ function Users(){
   const [isMobile , setIsMobile] = useState(false)
   const [availableWidth ,setAvailableWidth ] = useState(window.innerWidth)
   const handleMobileView = useCallback(() => {
-    console.log(availableWidth,isMobile);
+    console.log(availableWidth,isMobile,userStudents);
     if (availableWidth <= 778) {
       setIsMobile(true);
     } else {
@@ -74,17 +75,18 @@ function Users(){
                   </div>
               </div>))}
               <Link to="/adminPanel/addUsers">
-              <button class="btn row_btn col-12 text-light mt-4" href="#" role="button" style={{background:"#bf9b30"}}>Create New user</button></Link>
+              <button class="btn row_btn col-12 text-light mt-4" role="button" style={{background:"#bf9b30"}}>Create New user</button></Link>
+            
             </div>)
             
           : <div class="user-sec  ">
           <Link to="/adminPanel/addUsers">
-          <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" style={{ border:"1px solid #bf9b30"}}> Create new user</button>
+          <button className="btn color-yellow ps-4 m-2 d-block pe-4 p-2 ms-auto" onChange={(e)=>{setSearch(e.target.value)}} style={{border:"1px solid #bf9b30"}}> Create new user</button>
           </Link>
               <div class="article-search d-lg-flex justify-content-lg-between">
                 <h4 className="text-light">users</h4>
                 <div class="search-div">
-                  <input type="text" placeholder="Search For Jobs" onChange={(e)=>{setSearch(e.target.value)}} style={{borderRadius:"5px",padding:"5px"}}/>
+                  <input type="text" placeholder="Search For Jobs" style={{borderRadius:"5px",padding:"5px"}}/>
                   <FontAwesomeIcon icon={faSearch} className="text-warning"/>
                 </div>
               </div>
@@ -129,4 +131,4 @@ function Users(){
         </>
     )
 }
-export default Users;
+export default UserAdmins;

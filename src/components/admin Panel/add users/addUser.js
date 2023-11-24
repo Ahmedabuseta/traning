@@ -27,12 +27,28 @@ function AddUser(){
         // Implement your logic to save the formData
         console.log('Form data:', formData);
         const required = Object.keys(formData).every(key => {
-          if (formData[key] !== undefined && formData[key] !== '') {
-            console.log(`${key} is not empty: ${formData[key]}`);
+          if (formData[key] !== undefined && formData[key] !== ''){
+            
+            return true;
+          }else{
+            console.log(formData[key])
+            return false
           }
         })
         required?dispatch(addUser(formData)):window.alert('please fill all input fields');
-        // You might want to handle the data-saving process using state or sending it to an API.
+        
+        required && setFormData({
+          fName: '',
+          lName: '',
+          status: 'Active',
+          email: '',
+          role: 'Student',
+          mobNum: '',
+          userId: '',
+          password: '',
+          passwordConfirmation: '',
+          score: 0,
+        });
       };
       const publishData = () => {
         // Implement your logic to save the formData
@@ -86,10 +102,10 @@ function AddUser(){
             <div class="form-section col-md-4 col-lg-4 col-12">
               <label for="role">Role</label>
               <select class="form-select text-white bg-secondary bg-opacity-25 border-0" id="role"  value={formData.role} onChange={handleInputChange} aria-label=".form-select">
-                <option selected class="bg-secondary">Student</option>
-                <option value="1" class="bg-secondary">Admin</option>
-                <option value="2" class="bg-secondary">Instructor</option>
-                <option value="3" class="bg-secondary">Editor</option>
+                <option selected value="Student" class="bg-secondary">Student</option>
+                <option value="Admin" class="bg-secondary">Admin</option>
+                <option value="Instructor" class="bg-secondary">Instructor</option>
+                <option value="Editor" class="bg-secondary">Editor</option>
               </select>
             </div>
     
@@ -113,7 +129,7 @@ function AddUser(){
     
             <div class="form-section col-md-6 col-lg-6 col-12">
               <label for="password-conf">Password Confirmation</label>
-              <input type="password" id="passwordConf" value={formData.passwordConf}
+              <input type="password" id="passwordConfirmation" value={formData.passwordConfirmation}
                 onChange={handleInputChange} class="form-control bg-secondary bg-opacity-25"/>
             </div>
             

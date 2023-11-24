@@ -1,4 +1,8 @@
-
+.overlay{
+    background-color: rgba(0, 0, 0, 0.397);
+    padding: 1rem !important;
+    margin-top: 48px !important;
+}
   .h2-title{
     /* margin:30px 10%; */
     /* margin-top: 100px; */
@@ -34,12 +38,12 @@
 }
 .input{
     width: 98%;
-    /* height       : 50px; */
+    height       : 35px;
     /* margin-bottom: 50px; */
     /* margin-top: 15px; */
     border-radius:7px;
     opacity: 0.6;
-    background-color:  #8d8c8c8f;
+    background-color:  #5858588f;
     font-size: 21px;
     color: #000000;
     cursor: pointer;
@@ -103,7 +107,7 @@
     background-color: #999999;
     /* margin-bottom: 50px; */
 }
-@media(max-width:567px){
+@media(max-width:778px){
     .row3 {
         width: 125px;
         height: 2px;

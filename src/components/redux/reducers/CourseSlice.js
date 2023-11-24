@@ -13,7 +13,7 @@ export const CourseSlice= createSlice({
     name:"CourseSlice",
     initialState:[
         {
-            title:'this is title',
+            courseName:'this is courseName',
             status:true,
             instructor:"ahmed ali",
             level:1,
@@ -23,7 +23,7 @@ export const CourseSlice= createSlice({
             id:0,
         },
         {
-            title:'this is title',
+            courseName:'this is courseName',
             status:true,
             instructor:"ahmed ali",
             level:1,
@@ -33,7 +33,7 @@ export const CourseSlice= createSlice({
             id:1,
         },
         {
-            title:'this is title',
+            courseName:'this is courseName',
             status:false,
             instructor:"ahmed ali",
             level:1,

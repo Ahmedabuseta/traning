@@ -14,21 +14,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import PersonalPage from './components/welcome/personalPage';
 import AddUser from './components/admin Panel/add users/addUser';
-import Jobs from './components/jobPage studentPortal/findJob';
 import Profile from './components/profile/profile';
 import AddArticles from './components/admin Panel/add articles/AddArtciles';
 import FindJobs from './components/jobPage studentPortal/findJob';
 import Applications from './components/admin Panel/application/application';
 import UserStudents from './components/admin Panel/users-students/UsersStudents';
+import UserInstructors from './components/admin Panel/users-students/userInstructor';
+import UserAdmins from './components/admin Panel/users-students/usersAdmin';
+import PublishedArticles from './components/admin Panel/articles/saved';
+import DraftArticles from './components/admin Panel/articles/draft';
 import Users from './components/admin Panel/users/Users';
 import AddCourses from './components/admin Panel/add courses/addCourses';
 import Courses from './components/admin Panel/courses/Courses';
+import PublishedCourses from './components/admin Panel/courses/saved';
+import DraftCourses from './components/admin Panel/courses/draft';
 import AddCertificateDetails from './components/admin Panel/add certificate/Add_Certificate_Details';
 import { useSelector } from 'react-redux';
+import Jobs from './components/admin Panel/jobs/Jobs';
 
 function App() {
   const users = useSelector(state=>state.users)
-  const user = users.filter(user=>user.email == 'ahmed1@gmail')[0]
+  const user = users.filter(user=>user?.online == true)[0]
     return (
     <>
     <div className="App">
@@ -54,42 +60,55 @@ function App() {
        <Route path='/startups' element={<News/>}/>
        <Route path='/apps' element={<News/>}/>
        <Route path='/login' element={<LoginComponent/>}/>
-       
-      {user.online && user.role === 'Student'&& <Route path='/jobs' element={<FindJobs/>}/>}
-      {user.online && (user.role === 'Student' || user.role === 'instructor' || user.role === 'Admin') && (
-  <Route path="/profile" element={<Profile />} />
-)}    
-       {user.online && user.role === 'Student'&& <Route path='/createCv' element={<CvShape/>}/>}
-      
-       
-      {user.online &&user.role === 'Student' &&<Route path='/StudentPanel' element={<PersonalPage/>}/>}
-      {/* {user.online &&user.role === 'instructor' &&<Route path='/instructorPanel' element={<PersonalPage/>}/>} */}
+       {console.log(user?.role )}
+      {user?.online && <Route path='/jobs' element={<FindJobs/>}/>}
+      {user?.online && (user?.role === 'Student' || user?.role === 'instructor' || user?.role === 'Admin') && (
+      <Route path="/profile" element={<Profile />} />
+      )}    
+        {user?.online && user?.role === 'Student'&& (<Route path='/createCv' element={<CvShape/>}/>)}
+        {user?.online && user?.role === 'Student'&& (<Route path='/StudentPanel/coursedetails' element={<Coursedeatels />}/>)}
+        
+        {user?.online && user?.role === 'Student' &&(<Route path='/StudentPanel' element={<PersonalPage/>}/>)}
+        {user?.online &&user?.role === 'instructor' &&<Route path='/instructorPanel' element={<PersonalPage/>}/>}
 
-      {user.online &&user.role === 'Admin' && (
-        <Route path='/adminPanel' element={<AdminPanel/>}>
-       <Route path="articles" element={<Articles />} />
-            <Route
-              path="addarticles"
-              element={<AddArticles />}
-            />
-            <Route path="jobs" element={<Jobs />} />
-            <Route path="addjobs" element={<AddJob />} />
-            <Route
-              path="addcertificate"
-              element={<AddCertificateDetails />}
-            />
-            <Route path="courses" element={<Courses />} />
-            <Route path="addcourses" element={<AddCourses />} />
-            <Route path="users" element={<Users />} />
-            <Route path="addusers" element={<AddUser />} />
-            <Route path="application" element={<Applications />} />
-            <Route
-              path="userstudents"
-              element={<UserStudents />}
-            />
+        {user?.online &&user?.role === 'Admin' && (
+              <Route path='/adminPanel' element={<AdminPanel/>}>
+              <Route path="articles" element={<Articles />} />
+              <Route
+                path="addarticles"
+                element={<AddArticles />}
+              />
+              <Route path="Jobbs" element={<Jobs />} />
+              <Route path="publishedarticles" element={<PublishedArticles />} />
+              <Route path="draftarticles" element={<DraftArticles />} />
+              <Route path="addjobs" element={<AddJob />} />
+              <Route
+                path="addcertificate"
+                element={<AddCertificateDetails />}
+              />
+              <Route path="courses" element={<Courses />} />
+              <Route path="publishedcourses" element={<PublishedCourses />} />
+              
+              <Route path="draftcourses" element={<DraftCourses />} />
+              <Route path="addcourses" element={<AddCourses />} />
+              <Route path="users" element={<Users />} />
+              <Route path="addusers" element={<AddUser />} />
+              <Route path="application" element={<Applications />} />
+              <Route
+                path="userstudents"
+                element={<UserStudents />}
+              />
+              <Route
+                path="userAdmins"
+                element={<UserAdmins />}
+              />
+              <Route
+                path="userInstructors"
+                element={<UserInstructors />}
+              />
 
-       </Route>
-      )}
+        </Route>
+        )}
 
        
     <Route path='*' element={<News/>} />

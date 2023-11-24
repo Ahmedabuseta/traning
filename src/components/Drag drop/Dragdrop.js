@@ -12,6 +12,7 @@ function Dragdrop({ size, useFor ,onFileDrop}) {
   const [drop2, setDrop2] = useState(true);
   const [file, setFile] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const [draggingOver, setDraggingOver] = useState(false);
   const dispatch = useDispatch()
   const handleDragEnter = (e) => {
     e.preventDefault();
@@ -21,9 +22,11 @@ function Dragdrop({ size, useFor ,onFileDrop}) {
   const handleDragLeave = (e) => {
     e.preventDefault();
     setDragging(false);
+    setDraggingOver(false);
   };
 
   const handleDragOver = (e) => {
+    setDraggingOver(true);
     e.preventDefault();
   };
 
@@ -94,7 +97,7 @@ function Dragdrop({ size, useFor ,onFileDrop}) {
         onDrop={handleDrop}
       >
         <div id="drop-container">
-          <div className="drag-drop">
+          <div className={draggingOver?"drag-drop  drag":"drag-drop"}>
             <input onChange={handleFileChange} type="file" id="upload" />
             <div
               id="drop-area"
@@ -114,7 +117,7 @@ function Dragdrop({ size, useFor ,onFileDrop}) {
               <label htmlFor="upload">
                 {drop && drop2 && (
                   <div className="icon">
-                    <img src={uploadIcon} />
+                    <img src={uploadIcon} className={draggingOver?"hidden":""}/>
                   </div>
                 )}
                 {drop && !drop2 && (
@@ -125,10 +128,10 @@ function Dragdrop({ size, useFor ,onFileDrop}) {
             </div>
             <div className="drag-desc">
               {
-                size =='sm' ? '' :<h2 className="h2 text-center">{h2text} </h2>
+                size =='sm' ? '' :<h4 className="h2 text-center fs-5 text-light">{h2text} </h4>
 
               }
-              <label className="browse" htmlFor="upload" onChange={handleFileChange}>
+              <label className="browse fs-5" htmlFor="upload" onChange={handleFileChange}>
                 Browse
               </label>
             </div>

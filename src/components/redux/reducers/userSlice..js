@@ -13,7 +13,7 @@ export const UsersSlice= createSlice({
     name:"UsersSlice",
     initialState:[
         {
-            fName: 'ahmed',
+        fName: 'ahmed',
         lName: 'ahmed',
         status: 'inActive',
         email: 'ahmed@gmail',
@@ -54,11 +54,14 @@ export const UsersSlice= createSlice({
     ],
     reducers:{
         addUser:(state,action)=>{
-                state.push({...action.payload,userId:state.length})
-                const ids = state.map((user=>user.id))
-            let index = state.findIndex(action.payload.id)
-            ids?.includes(action.payload.id) ? state[index] = ({...action.payload,id:action.payload.id})
-            : state.push({...action.payload,id:state.length})
+            const userExists = state.find((user) => user.userId === action.payload.userId);
+            if (userExists) {
+              return state.map((user) =>
+                user.userId === action.payload.userId ? { ...user, ...action.payload } : user
+              );
+            } else {
+              state.push({ ...action.payload, userId: state.length });
+            }
         },
         setOnline:(state,action)=>{
             const index = state.findIndex(user=>user.userId == action.payload.userId)

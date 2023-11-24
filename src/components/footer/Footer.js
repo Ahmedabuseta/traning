@@ -5,15 +5,19 @@ import { faFacebook, faTwitter, faInstagram, faLinkedin} from '@fortawesome/free
 import footerLogo from '../../assest/seff_logo_transparent.png';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='footer-component mt-5 '>
+        <div>
+        <div className='backfooter' style={{height:"350px",visibility:"hidden",width:"100%"}}></div>
+        <div className='footer-component mt-5 z-1'>
             <div className='container-md'>
                 <div className='row p-0'>
                     <div className='col-12 p-0'>
                         <div className='footer-logo'>
-                            <img src={footerLogo} className='w-100 h-100'/>
+                        <Link to="/">
+                            <img src={footerLogo} className='w-100 h-100'/></Link>
                         </div>
                     </div>
                 </div>
@@ -56,7 +60,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className='footer-last-sec mt-5 position-relative'>
+                <div className='footer-last-sec position-relative'>
                     <div className='row mt-4'>
                         <div className='col-md-6 col-12 d-flex justify-content-md-start justify-content-center '>
                             <p className='copy-right text-white text-uppercase'>@2023 Egypt, All Rights Reserved</p>
@@ -73,7 +77,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='footer-bg container-fluid d-md-none d-block'></div>
-        </div>
+        </div></div>
     )
 }
 export default Footer;
