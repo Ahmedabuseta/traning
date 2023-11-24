@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './AdminSideBar.css'
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 function AdminSideBar(){
   const [cirtificateBtn ,setCertifiCateeBtn] = useState(false)
   const [userDropdown ,setuserDropdown] = useState(true)
@@ -38,15 +38,34 @@ function AdminSideBar(){
         break;
     }
   }
- 
+  const [isMobile , setIsMobile] = useState(false)
+  const [availableWidth ,setAvailableWidth ] = useState(window.innerWidth)
+  const handleMobileView = useCallback(() => {
+    console.log(availableWidth,isMobile);
+    if (availableWidth <= 778) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [availableWidth]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setAvailableWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
     return(
       <>
-        <div class="users-sec" >
+      {
+        !isMobile?(<div class="users-sec" >
         <div className='parent-users'> 
           <h2 onClick={()=>{setCertifiCateeBtn(false);handleShowDropdown('user')}}>
             <Link to="users" className={userDropdown ? 'color-yellow':'' }>Users</Link></h2>
-
-            {/*  */}
           <div class="lg-ul">
             <ul>
               <li><Link to="userAdmins">Admins</Link></li>
@@ -95,10 +114,7 @@ function AdminSideBar(){
         </div>
         {
           cirtificateBtn ?<Link to="addCertificate" > <button className=' btn text-light w-100' style={{background:"#bf9b30"}}> Add Certificate</button></Link>:''
-        }
-
-      </div>
-      <div className='drop container w-100 mt-3'>
+        }</div>):(<div className='drop container w-100 mt-3'>
             {
               userDropdown ?( <div className="dropdown">
               <button className="btn btn-secondary dropdown-toggle col-xs-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -150,7 +166,7 @@ function AdminSideBar(){
             </div>
           ): ''
             }
-            </div> 
+            </div>) }
       </>
     )
 }
