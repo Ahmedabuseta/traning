@@ -104,7 +104,7 @@ function AdminSideBar(){
               <button className="btn btn-secondary dropdown-toggle col-xs-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 users
               </button>
-              <ul  className='dropdown-menu drop-down col-xs-12'>
+              <ul  className='dropdown-menu w-100 drop-down col-xs-12'>
                 <li ><Link className='dropdown-item text-dark' to="userAdmins">Admins</Link></li>
                 <li><Link className='dropdown-item text-dark' to="userInstructors">Instructors</Link></li>
                 <li><Link className='dropdown-item text-dark' to="userstudents">Students</Link></li>
@@ -117,7 +117,7 @@ function AdminSideBar(){
               <button className="btn btn-secondary dropdown-toggle col-xs-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 articles
               </button>
-              <ul className='dropdown-menu col-xs-12'>
+              <ul className='dropdown-menu w-100 col-xs-12'>
                 <li><Link className='dropdown-item text-dark' to="publishedarticles">Published articles</Link></li>
                 <li><Link className='dropdown-item text-dark' to="#">Scheduled articles</Link></li>
                 <li><Link className='dropdown-item text-dark' to="draftarticles">Saved Drafts articles</Link></li>
@@ -130,7 +130,7 @@ function AdminSideBar(){
               <button className="btn btn-secondary dropdown-toggle col-xs-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 jobs
               </button>
-              <ul className='dropdown-menu col-xs-12'>
+              <ul className='dropdown-menu w-100 col-xs-12'>
                 <li><Link className='dropdown-item text-dark' to="#">Published jobs</Link></li>
                 <li><Link className='dropdown-item text-dark' to="#">Scheduled jobs</Link></li>
                 <li><Link className='dropdown-item text-dark' to="#">Saved Drafts</Link></li>
@@ -142,7 +142,7 @@ function AdminSideBar(){
               <button className="btn btn-secondary dropdown-toggle col-xs-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 courses
               </button>
-              <ul className='dropdown-menu col-xs-12' >
+              <ul className='dropdown-menu w-100 col-xs-12' >
                 <li><Link className='dropdown-item text-dark' to="publishedcourses">Published courses</Link></li>
                 <li><Link className='dropdown-item text-dark' to="#">Scheduled courses </Link></li>
                 <li><Link className='dropdown-item text-dark' to="draftcourses">Saved Drafts</Link></li>
