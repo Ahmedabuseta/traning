@@ -1,5 +1,7 @@
 import {useSelector} from "react-redux"
-
+import React, { useRef } from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function CvDesign(){
 const cvData = useSelector(state=>state.cvData)
@@ -16,9 +18,23 @@ const companyLogo = cvData.companyLogo;
 
 console.log(cvData)
 console.log(education)
+const webSectionRef = useRef(null);
+
+const generatePDF = () => {
+  const targetElement = webSectionRef.current;
+
+  html2canvas(targetElement).then((canvas) => {
+    const imageData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    pdf.addImage(imageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save('web_section.pdf'); // Trigger the download of the PDF file
+  });
+};
     return(
         <div class="information-container w-100">
-            <div class="row mx-0 w-100">
+            <div class="row mx-0 w-100" ref={webSectionRef}  id="webSection"    >
                 <div class="col-5 " style={{backgroundColor: "#233a5f"}}>
                     <div>
                     <img  class="rounded-circle  mx-auto mt-2 d-block " src={personalPhoto && URL.createObjectURL(personalPhoto)} alt="" width="130" height="130" />
@@ -143,7 +159,8 @@ console.log(education)
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> 
+            <button onClick={generatePDF} className={setTimeout(()=>{},100)}>Download PDF</button>
     </div>
     )
 }
